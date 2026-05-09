@@ -1,0 +1,42 @@
+add_executable(01_EulerainPath 01_Hierholzer/main.cpp)
+add_executable(02_LG_P7771 02_LG_P7771/main.cpp)
+add_executable(03_LG_P2731 03_LG_P2731/main.cpp)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

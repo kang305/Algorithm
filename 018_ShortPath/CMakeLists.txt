@@ -1,0 +1,5 @@
+add_executable(01_Bellman-Ford 01_Bellman-Ford/main.cpp)
+add_executable(02_optimization_dijkstra 02_optimization_dijkstra/main.cpp)
+add_executable(03_optimization_SPFA 03_optimization_SPFA/main.cpp)
+add_executable(04_LG_P1462 04_LG_P1462/main.cpp)
+add_executable(05_LG_P8802 05_LG_P8802/main.cpp)

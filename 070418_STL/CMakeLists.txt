@@ -1,0 +1,1 @@
+add_executable(01_P5250_Set 01_P5250_Set/main.cpp)

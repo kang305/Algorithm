@@ -1,0 +1,3 @@
+add_executable(01_PrimeNumber 01_PrimeNumber/main.cpp)
+add_executable(02_FastExponentiation 02_FastExponentiation/main.cpp)
+add_executable(03_HighAccuracyAlgorithm 03_HighAccuracyAlgorithm/main.cpp)

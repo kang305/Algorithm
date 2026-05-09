@@ -1,0 +1,5 @@
+add_executable(01_LG_P1908 01_LG_P1908/main.cpp)
+add_executable(02_LG_P2036 02_LG_P2036/main.cpp)
+add_executable(03_LG_P1330 03_LG_P1330/main.cpp)
+add_executable(04_LG_P1902 04_LG_P1902/main.cpp)
+add_executable(05_LG_P1168 05_LG_P1168/main.cpp)
