@@ -12,9 +12,9 @@ struct Edge
 {
     int to,w,next;
 }edge[500005];
-ll dist[100005];
-int cur[100005];//判断是否有负环
-int vis[100005];//标记i点在队列中
+ll dist[100005];//起点到该点的距离数组
+int cur[100005];//判断是否有负环，cur[k]表示从起点start到顶点k的最短路径长度(经过的边数)
+int vis[100005];//标记i点是否在队列中
 void addEdge(int u,int v,int w)
 {
     edge[cnt].to=v;
@@ -44,7 +44,7 @@ bool SPFA(int start) {
                 if (cur[k]>n-1)return 0;
                 if (vis[k]==0) {//未入队
                     q.push(k);//更新点入队
-                    vis[k]=1;
+                    vis[k]=1;//k点入队，vis标记
                 }
 
             }

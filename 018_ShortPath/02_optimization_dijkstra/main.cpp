@@ -14,7 +14,7 @@ struct Edge {
     int weight;
 }edge[200005];
 int cnt=0;
-int dist[100005];//距离数组
+int dist[100005];//起点到该点的距离数组
 int mark[100005];//标记是否已经有最短路径
 void addEdge(int u,int v,int w) {//u--weight-->v
     edge[cnt].to=v;
@@ -24,15 +24,15 @@ void addEdge(int u,int v,int w) {//u--weight-->v
     cnt++;
 }
 typedef pair<long long,int> pii;
-priority_queue<pii,vector<pii>,greater<pii>> q;
+priority_queue<pii,vector<pii>,greater<pii>> q;//利用小顶堆进行优化
 void dijskra_better(int start) {
     for (int i=1;i<=n;i++) {
         dist[i]=INF;
     }
     dist[start]=0;
     pii now;
-    now.first=dist[start];
-    now.second=start;
+    now.first=dist[start];//first存距离
+    now.second=start;//second存编号
     q.push(now);
     int u;
     while (q.size()) {
@@ -42,8 +42,8 @@ void dijskra_better(int start) {
         int index=now.second;
         if (mark[index]==1)continue;
         mark[index]=1;
-        for (int i=head[index];i!=-1;i=edge[i].Next) {
-            u=edge[i].to;
+        for (int i=head[index];i!=-1;i=edge[i].Next) {//对index所有相连的边进行松弛
+            u=edge[i].to;//存边的终点
             if (dist[u]>mini+edge[i].weight) {
                 dist[u]=mini+edge[i].weight;
                 now.first=dist[u];
@@ -53,11 +53,11 @@ void dijskra_better(int start) {
         }
     }
 }
-void dijkstra(int s){//正常方法
+void dijkstra(int start){//正常方法
     for (int i=1;i<=n;i++) {
         dist[i]=INF;
     }
-        dist[s]=0;
+        dist[start]=0;
         int u;
         for (int i=1;i<=n;i++) {
             int mini=INF;

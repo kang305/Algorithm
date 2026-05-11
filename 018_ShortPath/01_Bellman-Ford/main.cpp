@@ -12,7 +12,7 @@ struct Edge {
 int dist[105];
 void Ford() {//计算最短路径
     int u,v;//u-->v
-    for(int i=1;i<n;i++) {//进行n-1次松弛，对dist数组进行更新
+    for(int i=1;i<n;i++) {//进行n-1次松弛，对dist数组进行更新,对所有点进行暴力松弛
         int flag=0;
         for(int j=1;j<=m;j++) {
             u=edge[j].start;
@@ -22,7 +22,7 @@ void Ford() {//计算最短路径
                 flag=1;
             }
         }
-        if(flag==0) {
+        if(flag==0) {//没有在进行松弛操作就退出
             break;
         }
     }
@@ -36,10 +36,10 @@ void test1() {
         edge[i].end=y;
         edge[i].weight=w;
     }
-    for(int i=1;i<=n;i++) {
+    for(int i=1;i<=n;i++) {//所有点的dist设置为INF,可以松弛
         dist[i]=INF;
     }
-    cin>>s;
+    cin>>s;//起点
     dist[s]=0;
     Ford();
     for(int i=1;i<=n;i++) {
@@ -49,7 +49,7 @@ void test1() {
 bool BellmanFord() {//判断是否有负环,在n-1轮松弛一定可以算出最短路径
    int u,v;
     int flag;
-    for (int i=1;i<=n;i++) {//多进行一次松弛，n次
+    for (int i=1;i<=n;i++) {//多进行一次松弛，n次,n-1次就可以进行完松弛，如果还可以松弛那么就有负环
          flag=0;
         for(int j=1;j<=m;j++) {
             u=edge[j].start;
