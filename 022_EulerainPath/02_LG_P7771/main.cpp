@@ -15,7 +15,7 @@ vector<int> g[100005];//模拟链式前向星，方便排序找最小字典序
 int del[100005];//del[i]==2  从i的第2个邻接点开始访问,类似于无向图的删边操作
 void dfs(int x) {
     for (int i=del[x];i<g[x].size();i=del[x]) {
-        del[x]=i+1;//删除x的第i个邻接点 删除x的第i条出边,x的第一条边变成i+1---->弧优化
+        del[x]=i+1;//删除x的第i个邻接点 即删除x的第i条出边,x的第一条边变成i+1---->弧优化
         dfs(g[x][i]);//访问x的第i个邻接点
     }
     ans.push(x);

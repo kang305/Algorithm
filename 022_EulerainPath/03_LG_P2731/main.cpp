@@ -10,7 +10,23 @@ int d[509];//统计度
 stack<int> ans;//存储结果的点，并输出
 int st;
 int Max=-1,Min=509;//下标最大最小的值
-void dfs(int x) {
+
+int del[509]; // 扫描指针，需在 main中初始化为 Min
+void dfs(int x) {//弧优化
+    while (del[x] <= Max) {
+        int i = del[x];
+        if (graph[x][i] > 0) {       //还有边可以走
+            graph[x][i]--;
+            graph[i][x]--;
+            dfs(i);                  // 走到邻居 i
+            // 注意：del[x] 不变，继续在 i 上检查是否还有重边
+        } else {
+            del[x]++;                // 当前邻居无边，指针后移
+        }
+    }
+    ans.push(x);                     // 所有边处理完毕，压栈
+}
+void dfs_normal(int x) {
     for (int i=Min;i<=Max;i++) {
         if (graph[x][i]>0) {
             graph[x][i]--;
@@ -20,6 +36,7 @@ void dfs(int x) {
     }
     ans.push(x);
 }
+
 int main() {
     cin>>m;
     int x,y;
