@@ -1,0 +1,44 @@
+选取这个哈希函数的好处，方便计算任意子串的哈希值：s[i]*base^(x)每一项i和x的和为该字符串最后一项对应的编号
+假设有长度为n的字符串s。
+假设hash[i]表示子串s[0~i]的哈希值。
+(1).先求前缀子串：s[0],s[0,1],s[0~2],...,s[0~n-1]的哈希值：类似与求前缀和。
+ 	例如s=“abcde”。基数为base, 先不考虑取模。
+         hash[0]=a;
+hash[1]=a*base+b=hash[0]*base+s[1];
+hash[2]=a*base*base+b*base+c=(a*base+b)*base+c=hash[1]*base+s[2];
+hash[3]=a*base*base*base+b*base*base+c*base+d
+     =(a*base*base+b*base+c)*base+d
+     =hash[2]*base+s[3];
+ 则：hash[0]=s[0]，i>0时：hash[i]=hash[i-1]*base+s[i]。!!!
+
+
+(2).求任意一子串s[ l~r ]的哈希值h  len=r-l+1
+从l--r子串：l是起点，r是终点
+h=s[l]*base^(r-l)+s[l+1]*base^(r-l-1)+...+s[r-1]*base^1+s[r];
+
+从下标0，l-1-0=l，r-0=r,hash[x]包括位置x
+hash[l-1]=s[0]*base^(l-1)+s[1]*base^(l-2)+...+s[l-1]
+  hash[r]=s[0]*base^r+s[1]*base^(r-1)+...+s[l-1]*base^(r-l+1)+s[l]*base^(r-l)+...+s[r]
+
+h=hash[r]-hash[l-1]*base^(r-l+1)!!!
+快速求base^(r-l+1)，可以整个数组来保存base的i次方。
+这种获取子串hash值得方式我们就称为滚动哈希。O(n)
+O(n)预处理b^i---->base[i]
+O(n)预处理出前缀子串的哈希值h[i]
+O(1)计算出子串s[l]~~s[r]的哈希值
+
+降低哈希碰撞：
+1.将b和M尽量取大即可,越大值域越大，冲突越小。把所有变量的数据类型ull
+
+2.双Hash法：一个字符串用不同的Base和MOD，hash两次，将这两个结果用一个二元组表示，作为一个总的Hash结果。
+  相当于我们用不同的Base和MOD，进行两次 单Hash方法 操作，然后将得到的结果，变成一个二元组结果，
+  这样子，我们要看一个字符串，就要同时对比两个 Hash 值，这样子出现冲突的概率就很低
+
+  b的选择：比字符的个数多的一个质数
+  M：27、131、19260817  19660813
+  M>b
+
+长度为n的字符串子串的长度包括自己x=n(n+1)/2
+
+给两个字符串S1 S2，求S2是否为S1的子串，并求出S2在S1中出现的次数
+把S2 Hash出来，在S1里找所有长度为|S2|的子串，比较Hash(滑动窗口)
