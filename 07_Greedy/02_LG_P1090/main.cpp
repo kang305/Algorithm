@@ -1,5 +1,8 @@
 /*https://www.luogu.com.cn/problem/P1090#ide*/
-#include<bits/stdc++.h>
+#include<iostream>
+#include<queue>
+#include<stack>
+#include<vector>
 using namespace std;
 int n;
 long long ans,x,y;
